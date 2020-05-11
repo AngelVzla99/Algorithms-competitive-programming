@@ -1,5 +1,4 @@
-#include <iostream>
-#include <cstring>
+// Esta indexado [0,n-1], el tamaño del vector debe ser 2*n
 
 ll sum(vector<ll> &tree, int a, int b){
     a += n; b += n;
@@ -20,9 +19,4 @@ void add(vector<ll> &tree, int k, int x) {
     }
 }
 
-// Esta indexado [1,n], el tamaño del arreglo debe ser 2*n, siendo n potencia de 2
-int main(){
-
-    return 0;
-}
 
