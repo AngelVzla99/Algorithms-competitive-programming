@@ -11,7 +11,7 @@ int find(int x){
 		return x;
 	return father[x] = find(father[x]);
 }
-void unio(int x, int y){
+void unio(int x, int y){ // x y y tienen que ser los representantes
 	if (siz[x] > siz[y]) 
 		father[y] = x;
 	else{
