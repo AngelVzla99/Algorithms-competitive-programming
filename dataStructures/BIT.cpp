@@ -12,3 +12,23 @@ ll sumBIT(int p){
     	ret += BIT[p];
     return ret;
 }
+
+// This is equivalent to calculating lower_bound on prefix sums array
+// LOGN = log(N)
+
+int bit_search(int v)
+{
+	int sum = 0;
+	int pos = 0;
+	
+	for(int i=LOGN; i>=0; i--)
+	{
+		if(pos + (1 << i) < N and sum + BIT[pos + (1 << i)] < v)
+		{
+			sum += BIT[pos + (1 << i)];
+			pos += (1 << i);
+		}
+	}
+
+	return pos + 1; // +1 because 'pos' will have position of largest value less than 'v'
+}
