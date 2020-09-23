@@ -15,7 +15,7 @@ struct Hash {
 			}
 		}
 	}
-	ll get(int s, int e){
+	ll get(int s, int e){ // [s,e)
 		ll h0=(h[0][e]-h[0][s]+MOD[0])%MOD[0];
 		h0=(1LL*h0*pi[0][s])%MOD[0];
 		ll h1=(h[1][e]-h[1][s]+MOD[1])%MOD[1];
