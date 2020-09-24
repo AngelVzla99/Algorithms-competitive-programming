@@ -3,7 +3,7 @@ struct Hash {
 	vector<int> h[2],pi[2];
 	Hash(string& s){
 		MOD[0]=999727999;MOD[1]=1070777777;
-		PI[0]=325255434;PI[1]=10018302;
+		PI[0]=325255434;PI[1]=10018302; // inversa de P en MOD0 y MOD1
 		FOR(k,0,2)h[k].resize(s.size()+1),pi[k].resize(s.size()+1);
 		FOR(k,0,2){
 			h[k][0]=0;pi[k][0]=1;
