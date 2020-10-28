@@ -4,7 +4,7 @@ vector<int> G[MAXINT];
 int timer; // Tiempos de entrada y salida de cada nodo y su ancestro a dist 2**i
 int tin[MAXINT], tout[MAXINT], anc[MAXINT][ int(log2(MAXINT))+1 ];
 
-void dfs(int v, int p){
+void dfs(int v, int p){ // Se inicializa con dfs(1,1)
     tin[v] = ++timer;
     anc[v][0] = p;
 
