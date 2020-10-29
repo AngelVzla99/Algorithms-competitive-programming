@@ -1,40 +1,18 @@
-// Solo es una guia, varia mucho dependiendo del problema
-
-int v;
-vi G[MAXN];
-bool is_centroid[MAXN];
-int sz[MAXN];
-int father[MAXN];
-
-int dfs_sz(int x, int f = -1) {
-	sz[x] = 1;
-	for (auto y : G[x]) {
-		if (y == f || is_centroid[y])
-			continue;
-		sz[x] += dfs_sz(y, x);
-	}
-	return sz[x];
+vector<int> G[MAXN]; int n;
+bool tk[MAXN]; // already selected as a centroid
+int fat[MAXN]; // father in centroid decomposition
+int szt[MAXN]; // size of subtree
+int calcsz(int x, int f) {
+    szt[x] = 1;
+    for (auto y : G[x])if (y != f && !tk[y])szt[x] += calcsz(y, x);
+    return szt[x];
 }
-
-int dfs_cd(int x, int cent_sz, int f = -1) {
-	for (auto y : G[x]) {
-		if (y == f || is_centroid[y])
-			continue;
-		if (sz[y] > cent_sz / 2)
-			return dfs_cd(y, cent_sz, x);
-	}
-	return x;
+void cdfs(int x = 0, int f = -1, int sz = -1) { // O(nlogn)
+    if (sz < 0)sz = calcsz(x, -1);
+    for (auto y : G[x])if (!tk[y] && szt[y] * 2 >= sz) {
+            szt[x] = 0; cdfs(y, f, sz); return;
+        }
+    tk[x] = true; fat[x] = f;
+    for (auto y : G[x])if (!tk[y])cdfs(y, x);
 }
-
-
-void cent_descomp(int x, int f = -1) {
-	int cent_sz = dfs_sz(x);
-	int centroid = dfs_cd(x, cent_sz);
-	is_centroid[centroid] = true;
-	father[centroid] = f;
-	for (auto y : G[centroid]) {
-		if (is_centroid[y])
-			continue;
-		cent_descomp(y, centroid);
-	}
-}
+void centroid() {memset(tk, false, sizeof(tk)); cdfs();}
