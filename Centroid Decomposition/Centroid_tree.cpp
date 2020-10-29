@@ -1,3 +1,5 @@
+//https://github.com/mhunicken/icpc-team-notebook-el-vasito/blob/b69d2d6e9ad7c2a8e00b9a5f2dd1eead0da588f2/graphs/centroid.cpp#L9
+
 vector<int> G[MAXN]; int n;
 bool tk[MAXN]; // already selected as a centroid
 int fat[MAXN]; // father in centroid decomposition
