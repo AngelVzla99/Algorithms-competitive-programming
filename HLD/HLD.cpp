@@ -1,52 +1,35 @@
-// code for HLD
-int heavy[MAXN];
-void dfs_heavy(int x, int f = -1) {
-    heavy[x] = -1;
-    int mx = -1;
-    for (auto aux : G[x]) {
-        int y = aux.F, c = aux.S;
-        if (y == f)
-            continue;
-        if (sz[y] > mx) {
-            mx = sz[y];
-            heavy[x] = y;
-        }
-    }
-    for (auto aux : G[x]) {
-        if (aux.F == f)
-            continue;
-        dfs_heavy(aux.F, x);
-    }
-}
+// https://github.com/mhunicken/icpc-team-notebook-el-vasito/blob/b69d2d6e9ad7c2a8e00b9a5f2dd1eead0da588f2/graphs/hld.cpp
 
-int head[MAXN], start[MAXN];
-int paths[MAXN];
-int pos;
-void hld() {
-    for (int i = 0, pos = 0; i < n; ++i) {
-        if (father[i] == -1 || heavy[father[i]] != i) {
-            for (int j = i; j != -1; j = heavy[j])
-            {
-                head[j] = i;
-                start[j] = pos; paths[pos] = weight[j];
-                pos++;
-            }
-        }
-    }
+vector<int> G[MAXN];
+int wg[MAXN],dad[MAXN],dep[MAXN]; // weight,father,depth
+void dfs1(int x){
+	wg[x]=1;
+	for(int y:G[x])if(y!=dad[x]){
+		dad[y]=x;dep[y]=dep[x]+1;dfs1(y);
+		wg[x]+=wg[y];
+	}
 }
-
-int query(int a, int b) { // query para max en este caso
-    int res = 0;
-    while (head[a] != head[b]) {
-        if (depth[head[a]] < depth[head[b]]) {
-            swap(a, b);
-        }
-        res = max(res, STQ(start[head[a]], start[a] + 1).val);
-        a = father[head[a]];
-    }
-    if (depth[a] > depth[b])
-        swap(a, b);
-    if (a != b)
-        res = max(res, STQ(start[a] + 1, start[b] + 1).val); // aqui es start[a] + 1 porque la query es sobre edges
-    return res;
+int curpos,pos[MAXN],head[MAXN];
+void hld(int x, int c){
+	if(c<0)c=x;
+	pos[x]=curpos++;head[x]=c;
+	int mx=-1;
+	for(int y:G[x])if(y!=dad[x]&&(mx<0||wg[mx]<wg[y]))mx=y;
+	if(mx>=0)hld(mx,c);
+	for(int y:G[x])if(y!=mx&&y!=dad[x])hld(y,-1);
 }
+void hld_init(){dad[0]=-1;dep[0]=0;dfs1(0);curpos=0;hld(0,-1);}
+int query(int x, int y, STree& rmq){
+	int r=NEUT;
+	while(head[x]!=head[y]){
+		if(dep[head[x]]>dep[head[y]])swap(x,y);
+		r=oper(r,rmq.query(pos[head[y]],pos[y]+1));
+		y=dad[head[y]];
+	}
+	if(dep[x]>dep[y])swap(x,y); // now x is lca
+	r=oper(r,rmq.query(pos[x],pos[y]+1));
+	return r;
+}
+// for updating: rmq.upd(pos[x],v);
+// queries on edges: - assign values of edges to "child" node
+//                   - change pos[x] to pos[x]+1 in query (line 30)
