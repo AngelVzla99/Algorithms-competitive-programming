@@ -9,7 +9,7 @@ struct Matrix {
     }
     Matrix operator*(Matrix &other) {
         Matrix ret(0);
-        FOR(k, 0, n_states) FOR(i, 0, n_states) FOR(j, 0, n_states) {
+        FOR(i, 0, n_states) FOR(k, 0, n_states) FOR(j, 0, n_states) {
             ret.mat[i][j] += mat[i][k] * other.mat[k][j];
         }
         return ret;
