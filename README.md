@@ -5,46 +5,46 @@ Algorithms most used in competitive programming by category.
 | Topic    | Jesus     | Cristian     |  Angel |
 | :------------- | :----------: | -----------: | -----------: | 
 |<strong>GRAPH</strong>  |<strong>GRAPH</strong>|<strong>GRAPH</strong>|<strong>GRAPH</strong>| 
-| Bridges and articulation points | :chart: |  |  | 
-| Centroid tree | :chart: |  |  | 
-| Heavy light decomposition | :chart: |  |  | 
-| Chu liu | :x: |  |  |  
-| Dynamic connectivity | :x: |  |  | 
-| Edmons Blossom | :x: |  |  | 
-| Max flow | :on: |  |  | 
-| Min cut | :on: |  |  | 
-| Bipartite matching | :on: |  |  | 
-| Max flow min cost | :on: |  |  | 
-| Hungarian | :x: |  |  | 
+| Bridges and articulation points | :chart: |  | :x: | 
+| Centroid tree | :chart: |  | :x: | 
+| Heavy light decomposition | :chart: |  | :x: | 
+| Chu liu | :x: |  | :x: | 
+| Dynamic connectivity | :x: |  | :x: | 
+| Edmons Blossom | :x: |  | :x: | 
+| Max flow | :on: |  | :x: | 
+| Min cut | :on: |  | :x: | 
+| Bipartite matching | :on: |  | :x: | 
+| Max flow min cost | :on: |  | :x: | 
+| Hungarian | :x: |  | :x: | 
 | <strong>DATA STRUCTURES</strong> |<strong>DATA STRUCTURES</strong>| <strong>DATA STRUCTURES</strong> | <strong>DATA STRUCTURES</strong> | 
-| Fenwick Tree | :chart: |  |  | 
-| Segment Tree | :chart: |  |  | 
-| Segment Tree Lazy | :chart: |  |  | 
-| Segment Tree Persistent | :chart: |  |  | 
-| Link Cut Tree | :x: |  |  | 
-| Sparse Table |:chart:  |  |  | 
-| Treap | :x: |  |  | 
-| Wavelet Tree | :x: |  |  | 
+| Fenwick Tree | :chart: |  | :x: | 
+| Segment Tree | :chart: |  | :x: | 
+| Segment Tree Lazy | :chart: |  | :x: | 
+| Segment Tree Persistent | :chart: |  | :x: | 
+| Link Cut Tree | :x: |  | :x: | 
+| Sparse Table |:chart:  |  | :x: | 
+| Treap | :x: |  | :x: | 
+| Wavelet Tree | :x: |  | :x: | 
 | <strong>STRINGS</strong>|<strong>STRINGS</strong>  | <strong>STRINGS</strong> | <strong>STRINGS</strong>| 
-| Hashing |:chart:  |  |  | 
-| Aho-corasick | :x: |  |  | 
-| KMP | :x: |  |  | 
-| Manacher | :x: |  |  | 
-| Trie | :chart: |  |  | 
-| Palindromic Tree | :x: |  |  | 
-| Suffix Array |:x:  |  |  | 
-| Suffix Tree | :x: |  |  | 
-| Z-function | :x: |  |  | 
+| Hashing |:chart:  |  | :x: | 
+| Aho-corasick | :x: |  | :x: | 
+| KMP | :x: |  | :x: | 
+| Manacher | :x: |  | :x: | 
+| Trie | :chart: |  | :x: | 
+| Palindromic Tree | :x: |  | :x: | 
+| Suffix Array |:x:  |  | :x: | 
+| Suffix Tree | :x: |  | :x: | 
+| Z-function | :x: |  | :x: | 
 |<strong>MATH</strong>| <strong>MATH</strong>| <strong>MATH</strong>| <strong>MATH</strong>| 
-| Matrix Exponentiation | :chart: |  |  | 
-| FFT | :x: |  |  | 
-| Pollard Rho | :x: |  |  | 
-| Burnsides lemma | :x: |  |  | 
-| Chinese Remainder Theorem | :x: |  |  | 
-| Riemann hypothesis | :x: |  |  | 
-| Fernats little test | :x: |  |  | 
+| Matrix Exponentiation | :chart: |  | :x: | 
+| FFT | :x: |  | :x: | 
+| Pollard Rho | :x: |  | :x: | 
+| Burnsides lemma | :x: |  | :x: |  
+| Chinese Remainder Theorem | :x: |  | :x: | 
+| Riemann hypothesis | :x: |  | :x: | 
+| Fernats little test | :x: |  | :x: | 
 | <strong>GAME THEORY</strong> | <strong>GAME THEORY</strong> |<strong>GAME THEORY</strong>  |<strong>GAME THEORY</strong>  | 
-| Grundy numbers |:x:  |  |  | 
+| Grundy numbers |:x:  |  | :x: | 
 | <strong>GEOMETRY</strong>| <strong>GEOMETRY</strong>| <strong>GEOMETRY</strong>| <strong>GEOMETRY</strong>| 
-| Convex Hull | :x: |  |  | 
+| Convex Hull | :x: |  | :x: | 
 | <strong>OTHERS</strong>| <strong>OTHERS</strong>| <strong>OTHERS</strong>| <strong>OTHERS</strong>|
