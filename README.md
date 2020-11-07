@@ -18,25 +18,25 @@ Algorithms most used in competitive programming by category.
 | Hungarian | :x: |  | :x: | 
 | <strong>DATA STRUCTURES</strong> |<strong>DATA STRUCTURES</strong>| <strong>DATA STRUCTURES</strong> | <strong>DATA STRUCTURES</strong> | 
 | Fenwick Tree | :chart: |  | :x: | 
-| Segment Tree | :chart: |  | :x: | 
-| Segment Tree Lazy | :chart: |  | :x: | 
-| Segment Tree Persistent | :chart: |  | :x: | 
+| Segment Tree | :chart: |  | :chart: | 
+| Segment Tree Lazy | :chart: |  | :chart: | 
+| Segment Tree Persistent | :chart: |  | :chart: | 
 | Link Cut Tree | :x: |  | :x: | 
 | Sparse Table |:chart:  |  | :x: | 
 | Treap | :x: |  | :x: | 
 | Wavelet Tree | :x: |  | :x: | 
 | <strong>STRINGS</strong>|<strong>STRINGS</strong>  | <strong>STRINGS</strong> | <strong>STRINGS</strong>| 
-| Hashing |:chart:  |  | :x: | 
+| Hashing |:chart:  |  | :chart: | 
 | Aho-corasick | :x: |  | :x: | 
 | KMP | :x: |  | :x: | 
 | Manacher | :x: |  | :x: | 
 | Trie | :chart: |  | :x: | 
 | Palindromic Tree | :x: |  | :x: | 
-| Suffix Array |:x:  |  | :x: | 
+| Suffix Array |:x:  |  | :chart: | 
 | Suffix Tree | :x: |  | :x: | 
-| Z-function | :x: |  | :x: | 
+| Z-function | :x: |  | :chart: | 
 |<strong>MATH</strong>| <strong>MATH</strong>| <strong>MATH</strong>| <strong>MATH</strong>| 
-| Matrix Exponentiation | :chart: |  | :x: | 
+| Matrix Exponentiation | :chart: |  | :on: | 
 | FFT | :x: |  | :x: | 
 | Pollard Rho | :x: |  | :x: | 
 | Burnsides lemma | :x: |  | :x: |  
@@ -46,5 +46,5 @@ Algorithms most used in competitive programming by category.
 | <strong>GAME THEORY</strong> | <strong>GAME THEORY</strong> |<strong>GAME THEORY</strong>  |<strong>GAME THEORY</strong>  | 
 | Grundy numbers |:x:  |  | :x: | 
 | <strong>GEOMETRY</strong>| <strong>GEOMETRY</strong>| <strong>GEOMETRY</strong>| <strong>GEOMETRY</strong>| 
-| Convex Hull | :x: |  | :x: | 
+| Convex Hull | :x: |  | :on: | 
 | <strong>OTHERS</strong>| <strong>OTHERS</strong>| <strong>OTHERS</strong>| <strong>OTHERS</strong>|
