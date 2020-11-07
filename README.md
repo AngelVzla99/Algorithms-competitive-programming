@@ -2,7 +2,7 @@
 Algorithms most used in competitive programming by category.
 
 
-| Tema    | Jesus     | Cristian     |  Angel |
+| Topic    | Jesus     | Cristian     |  Angel |
 | :------------- | :----------: | -----------: | -----------: | 
 |<strong>GRAPH</strong>  |<strong>GRAPH</strong>|<strong>GRAPH</strong>|<strong>GRAPH</strong>| 
 | Bridges and articulation points | :chart: |  |  | 
