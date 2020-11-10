@@ -3,7 +3,7 @@ struct Dinic{
 	vector<int> dist,q,work;
 	struct edge {int to,rev;ll f,cap;};
 	vector<vector<edge>> g;
-	Dinic(int x):nodes(x),g(x),dist(x),q(x),work(x){}
+	Dinic(int x):nodes(x),dist(x),q(x),work(x),g(x){}
 	void add_edge(int s, int t, ll cap){
 		g[s].pb((edge){t,SZ(g[t]),0,cap});
 		g[t].pb((edge){s,SZ(g[s])-1,0,0});
