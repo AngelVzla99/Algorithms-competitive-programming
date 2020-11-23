@@ -27,8 +27,9 @@ Algorithms most used in competitive programming by category.
 | Wavelet Tree | :x: |  | :x: | 
 | <strong>STRINGS</strong>|<strong>STRINGS</strong>  | <strong>STRINGS</strong> | <strong>STRINGS</strong>| 
 | Hashing |:chart:  |  | :chart: | 
-| Aho-corasick | :x: |  | :x: | 
-| KMP | :x: |  | :x: | 
+| Aho-corasick | :on: |  | :x: | 
+| KMP | :on: |  | :x: | 
+| Suffix Automata | :on: |  | :x: | 
 | Manacher | :x: |  | :x: | 
 | Trie | :chart: |  | :x: | 
 | Palindromic Tree | :x: |  | :x: | 
