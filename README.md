@@ -11,10 +11,10 @@ Algorithms most used in competitive programming by category.
 | Chu liu | :x: |  | :x: | 
 | Dynamic connectivity | :x: |  | :x: | 
 | Edmons Blossom | :x: |  | :x: | 
-| Max flow | :on: |  | :x: | 
-| Min cut | :on: |  | :x: | 
-| Bipartite matching | :on: |  | :x: | 
-| Max flow min cost | :on: |  | :x: | 
+| Max flow | :chart: |  | :x: | 
+| Min cut | :chart: |  | :x: | 
+| Bipartite matching | :chart: |  | :x: | 
+| Max flow min cost | :chart: |  | :x: | 
 | Hungarian | :x: |  | :x: | 
 | <strong>DATA STRUCTURES</strong> |<strong>DATA STRUCTURES</strong>| <strong>DATA STRUCTURES</strong> | <strong>DATA STRUCTURES</strong> | 
 | Fenwick Tree | :chart: |  | :x: | 
