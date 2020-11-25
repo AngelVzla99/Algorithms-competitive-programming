@@ -5,39 +5,39 @@ Algorithms most used in competitive programming by category.
 | Topic    | Jesus     | Cristian     |  Angel |
 | :------------- | :----------: | -----------: | -----------: | 
 |<strong>GRAPH</strong>  |<strong>GRAPH</strong>|<strong>GRAPH</strong>|<strong>GRAPH</strong>| 
-| Bridges and articulation points | :chart: |  | :x: | 
-| Centroid tree | :chart: |  | :x: | 
-| Heavy light decomposition | :chart: |  | :x: | 
+| Bridges and articulation points | :heavy_check_mark: |  | :x: | 
+| Centroid tree | :heavy_check_mark: |  | :x: | 
+| Heavy light decomposition | :heavy_check_mark: |  | :x: | 
 | Chu liu | :x: |  | :x: | 
 | Dynamic connectivity | :x: |  | :x: | 
 | Edmons Blossom | :x: |  | :x: | 
-| Max flow | :chart: |  | :x: | 
-| Min cut | :chart: |  | :x: | 
-| Bipartite matching | :chart: |  | :x: | 
-| Max flow min cost | :chart: |  | :x: | 
+| Max flow | :heavy_check_mark: |  | :x: | 
+| Min cut | :heavy_check_mark: |  | :x: | 
+| Bipartite matching | :heavy_check_mark: |  | :x: | 
+| Max flow min cost | :heavy_check_mark: |  | :x: | 
 | Hungarian | :x: |  | :x: | 
 | <strong>DATA STRUCTURES</strong> |<strong>DATA STRUCTURES</strong>| <strong>DATA STRUCTURES</strong> | <strong>DATA STRUCTURES</strong> | 
-| Fenwick Tree | :chart: |  | :x: | 
-| Segment Tree | :chart: |  | :chart: | 
-| Segment Tree Lazy | :chart: |  | :chart: | 
-| Segment Tree Persistent | :chart: |  | :chart: | 
+| Fenwick Tree | :heavy_check_mark: |  | :x: | 
+| Segment Tree |:heavy_check_mark: |  |:heavy_check_mark: | 
+| Segment Tree Lazy | :heavy_check_mark: |  | :heavy_check_mark:| 
+| Segment Tree Persistent | :heavy_check_mark:|  | :heavy_check_mark:| 
 | Link Cut Tree | :x: |  | :x: | 
-| Sparse Table |:chart:  |  | :x: | 
+| Sparse Table |:heavy_check_mark:  |  | :x: | 
 | Treap | :x: |  | :x: | 
 | Wavelet Tree | :x: |  | :x: | 
 | <strong>STRINGS</strong>|<strong>STRINGS</strong>  | <strong>STRINGS</strong> | <strong>STRINGS</strong>| 
-| Hashing |:chart:  |  | :chart: | 
+| Hashing |:heavy_check_mark:  |  | :heavy_check_mark:| 
 | Aho-corasick | :on: |  | :x: | 
 | KMP | :on: |  | :x: | 
 | Suffix Automata | :on: |  | :x: | 
 | Manacher | :x: |  | :x: | 
-| Trie | :chart: |  | :x: | 
+| Trie |:heavy_check_mark: |  | :x: | 
 | Palindromic Tree | :x: |  | :x: | 
-| Suffix Array |:x:  |  | :chart: | 
+| Suffix Array |:x:  |  | :heavy_check_mark: | 
 | Suffix Tree | :x: |  | :x: | 
-| Z-function | :x: |  | :chart: | 
+| Z-function | :x: |  | :heavy_check_mark: | 
 |<strong>MATH</strong>| <strong>MATH</strong>| <strong>MATH</strong>| <strong>MATH</strong>| 
-| Matrix Exponentiation | :chart: |  | :on: | 
+| Matrix Exponentiation | :heavy_check_mark: |  | :on: | 
 | FFT | :x: |  | :x: | 
 | Pollard Rho | :x: |  | :x: | 
 | Burnsides lemma | :x: |  | :x: |  
