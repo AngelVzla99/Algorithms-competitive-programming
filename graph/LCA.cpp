@@ -8,7 +8,7 @@ void dfs(int v, int p){ // Se inicializa con dfs(1,1)
     tin[v] = ++timer;
     anc[v][0] = p;
 
-    for(int i = 1; i <= l; ++i) anc[v][i] = anc[anc[v][i-1]][i-1];
+    for(int i = 1; i <= l; ++i) anc[v][i] = anc[ anc[v][i-1] ][i-1];
     for(int w : G[v]) if(w!=p) dfs(w, v);
 
     tout[v] = ++timer;
