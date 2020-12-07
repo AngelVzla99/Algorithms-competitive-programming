@@ -35,7 +35,7 @@ Algorithms most used in competitive programming by category.
 | Palindromic Tree | :x: |  | :x: | 
 | Suffix Array |:x:  |  | :heavy_check_mark: | 
 | Suffix Tree | :x: |  | :x: | 
-| Z-function | :x: |  | :heavy_check_mark: | 
+| Z-function | :heavy_check_mark: |  | :heavy_check_mark: | 
 |<strong>MATH</strong>| <strong>MATH</strong>| <strong>MATH</strong>| <strong>MATH</strong>| 
 | Matrix Exponentiation | :heavy_check_mark: |  | :on: | 
 | FFT | :x: |  | :x: | 
