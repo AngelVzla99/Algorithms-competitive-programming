@@ -12,7 +12,7 @@ vector<ld> dijkstra(int s){
         if( visit[v] ) continue;
 
         for(auto e: G[v]){ // G[from].pb({to,cost})
-            u = e.first;
+            u = e._1;
             ld d = e._2 + dist[v];
             if( dist[u] > d && !visit[u] ){
                 dist[u] = d;
