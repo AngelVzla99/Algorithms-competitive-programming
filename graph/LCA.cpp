@@ -1,8 +1,10 @@
+// Para usar, l=log2(n), y se llama a dfs(1,1), luego se usa lca(u,v)
+
 int n, l; // l = log(n)
-vector<int> G[MAXINT];
+vector<int> G[MAXN];
 
 int timer; // Tiempos de entrada y salida de cada nodo y su ancestro a dist 2**i
-int tin[MAXINT], tout[MAXINT], anc[MAXINT][ int(log2(MAXINT))+1 ];
+int tin[MAXN], tout[MAXN], anc[MAXN][ int(log2(MAXN))+1 ];
 
 void dfs(int v, int p){ // Se inicializa con dfs(1,1)
     tin[v] = ++timer;
