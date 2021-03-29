@@ -135,7 +135,7 @@ int main(){
 	int wc[n]={}; N = 1;
 	while( N <= n+m ) N*=2;	
 	
-	// cuento cantidad de match entre los wildCard '?' en 'a' y 'b' (28)
+	// cuento cantidad de match entre los wildCard '?'(28) en 'a' y 'b'
 	cd P[N], Q[N], R[N];
 	FOR(i,0,n) P[i] = cd( (a[i]==28) ); // Polinomio de 1's y 0's
 	FOR(i,0,m) Q[i] = cd( (b[m-1-i]==28) );
