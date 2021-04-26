@@ -1,4 +1,4 @@
-int father[maxN], siz[maxN];
+int father[MAXN], siz[MAXN];
 // n es el primer elemento y m el ultimo, por ejemplo los nodos de un grafo desde el 1 al 10
 void makeSet(int n, int m){
 	for (int i = n; i <= m; ++i){
