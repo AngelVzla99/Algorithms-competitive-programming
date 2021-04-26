@@ -9,10 +9,12 @@ struct MCF{
 	struct edge{int to, rev; tf f, cap; tc cost;};
 	vector<vector<edge>> g;
 	MCF(int n):n(n),prio(n),curflow(n),prevedge(n),prevnode(n),pot(n),g(n){}
+	
 	void add_edge(int s, int t, tf cap, tc cost) {
 		g[s].pb((edge){t,SZ(g[t]),0,cap,cost});
 		g[t].pb((edge){s,SZ(g[s])-1,0,0,-cost});
 	}
+	
 	pair<tf,tc> get_flow(int s, int t) {
 		tf flow=0; tc flowcost=0;
 		while(1){
@@ -21,8 +23,8 @@ struct MCF{
 			prio[s]=0; curflow[s]=INFFLOW;
 			while(!q.empty()) {
 				auto cur=q.top();
-				tc d=cur._1;
-				int u=cur._2;
+				tc d=cur.F;
+				int u=cur.S;
 				q.pop();
 				if(d!=prio[u]) continue;
 				for(int i=0; i<SZ(g[u]); ++i) {

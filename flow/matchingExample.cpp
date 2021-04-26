@@ -1,119 +1,114 @@
-// Problem: C https://codeforces.com/gym/101408/attachments/download/5626/20082009-northwestern-european-regional-contest-nwerc-2008-en.pdf
+//https://codeforces.com/problemset/problem/1423/B
 
 #include <iostream>
-#include <iomanip>
-#include <algorithm>
-#include <cstring>
 #include <vector>
 #include <queue>
 #include <stack>
-#include <string.h>
+#include <algorithm>
 #include <math.h>
+#include <string>
+#include <cstring>
 #include <set>
 #include <map>
 #include <unordered_map>
+#include <assert.h>
+#include <iostream>     // std::cout, std::fixed
+#include <iomanip>      // std::setprecision
+
 using namespace std;
 
 typedef long long ll;
 typedef long double ld;
 typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
+typedef pair<ll,ll> pll;
+typedef pair<int, pair<int, int>> piii;
+typedef vector<int> vi;
+typedef vector<pii> vii;
+
+int dadsadasda;
+#define ri(a) dadsadasda=scanf("%d", &a)
+#define rii(a,b) dadsadasda=scanf("%d %d", &a, &b)
+#define riii(a,b,c) dadsadasda=scanf("%d %d %d", &a, &b, &c)
+#define rl(a) dadsadasda=scanf("%lld", &a)
+#define rll(a,b) dadsadasda=scanf("%lld %lld", &a, &b)
 #define FOR(i,n,m) for(int i=n; i<m; i++)
 #define ROF(i,n,m) for(int i=n; i>m; i--)
 #define pb push_back
-#define _1 first
-#define _2 second
+#define lb lower_bound
+#define ub upper_bound
+#define F first
+#define S second
 #define ALL(s) s.begin(),s.end()
+#define SZ(s) (int)s.size()
 
 const int INF = 0x3f3f3f3f;
-const ll INFLL = 1e18;
-const int MOD = 998244353 ;//1e9+9;
-const ld PI = atan(1.0)*4L;
-const int MAXINT = 1e5+1;
+const ll INFLL = 1e18+1;
+const int MOD = 998244353;
+const int MAXN = 1e4+100;
 
+// [0,n) -> [0,n)
+int mark[MAXN], mat[MAXN][2];
 int n;
-int cap[600][600];
-int visited[600];
-
-/* Find an augmenting path from s to t in the flow graph using DFS.
- * Returns amount of flow added.
- */
-int augment(int s, int t, int c) {
-  if (s == t) return c;
-  visited[s] = true;
-  for (int x = 0; x < n+2; ++x) {
-    if (cap[s][x] && !visited[x]) {
-      // If there is capacity to an unvisited node, try to augment that way.
-      int add = augment(x, t, min(c, cap[s][x]));
-      if (add) {
-		// Augmenting path found, update capacities
-		cap[s][x] -= add;
-		cap[x][s] += add;
-		return add;
-      }
+vector<int> G[MAXN];
+bool dfs(int v){
+    if(mark[v])  return 0;
+    mark[v] = 1;
+    for(auto u : G[v])
+        if(mat[u][1] == -1 || dfs(mat[u][1]))
+            return mat[v][0] = u, mat[u][1] = v, 1;
+    return 0;
+}
+int maximum_matching(){
+    memset(mat, -1, sizeof mat);
+    bool br = 0;
+    int ans = 0;
+    while(br ^= 1){
+        memset(mark, 0, sizeof mark);
+        for(int i = 0; i < n; i++)
+            if(mat[i][0] == -1 && dfs(i))
+                ans++, br = 0;
     }
-  }
-  return 0;
+    return ans;
 }
 
-/* Ford-Fulkersons algorithm for finding the maximum flow from s to t.
- * Returns the total maximum flow that could be added.
- */
-int max_flow(int s, int t) {
-  int totflow = 0, addflow = 0;
-  do {
-    memset(visited, 0, sizeof(visited));
-    addflow = augment(s, t, 1<<28);
-    totflow += addflow;
-  } while (addflow);
-  return totflow;
+struct edge{ 
+	int v, u, d; 
+	bool operator<( edge e2 ){
+		if( d!=e2.d ) return d<e2.d;
+		return v<e2.v;
+	}
+};
+
+vector<edge> E; 
+
+bool valid(int k){
+	int val = E[k].d;
+	FOR(i,0,n) G[i].clear();
+	for(auto e: E) if(e.d<=val) G[e.v-1].pb(e.u-1);
+	return maximum_matching()==n;
 }
 
 int main(){
-	ios_base::sync_with_stdio(false); cin.tie(0);
-
-	int t; cin >> t;
-	while(t--){
-		int c, d; cin>>c>>d>>n;
-		vector<pii> node[2];
-		vector<int> lab[2];
-		int cu = 0, S = n, T = n+1;
-
-		memset(cap,0,sizeof(cap));
-		FOR(i,0,n){
-			char cA, cB; int a, b;
-			cin >> cA >> a >> cB >> b;
-			if(cA=='C') node[0].pb({a,b}), lab[0].pb(cu++);
-			else node[1].pb({b,a}), lab[1].pb(cu++);
-		}
-		
-		int C = lab[0].size(), D = lab[1].size();
-		
-		FOR(i,0,C) cap[S][lab[0][i]]=1;
-		FOR(i,0,D) cap[lab[1][i]][T]=1;
-		FOR(i,0,C) FOR(j,0,D){
-			bool p = node[0][i]._1 == node[1][j]._1;
-			bool q = node[0][i]._2 == node[1][j]._2;
-			if( p || q ){
-				cap[lab[0][i]][lab[1][j]] = 1;
-			}
-		}
-		cout << n - max_flow(S,T) << endl;
-	}
+    ios_base::sync_with_stdio(false); cin.tie(0);
+    
+	int M; cin >> n >> M; int v, u, d;
+	FOR(i,0,M) cin>>v>>u>>d, E.pb({v,u,d});
+	sort(ALL(E));
 	
-	return 0; 
+	if( !valid(M-1) ) cout << -1 << '\n';
+	else{
+		int l = -1, r = M-1, mid;
+		while( l+1<r ){
+			mid = (l+r)/2;
+			if( valid(mid) ) r = mid;
+			else l = mid;
+		}
+		cout << E[r].d << '\n';
+	}
+    
+    return 0;
 }
 
 /*
 
-*/  
-
-
-
-
-
-
-
-
-
-
+*/
