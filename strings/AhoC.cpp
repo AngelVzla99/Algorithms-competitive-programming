@@ -13,6 +13,13 @@
  inds son los indices de los strings a veces no haran falta
 */
 
+/*
+   hay varios trucos para hacer que sea mas rapido dependendo de la situacion:
+      * si te dan un conj de patrones y solo quieres saber cuantas veces aparecen todos
+      puedes mejorar el codigo haciendo d[v].cnt += d[ d[v].link ].cnt, asi no hay que recorrer hasta la raiz
+      * si hay updates puedes usar un Euler Tree para resolver las queries en O(|texto| * logn)
+*/
+
 struct ACfixed { // fixed alphabet
     static const int ASZ = 52;
     struct node { array<int, ASZ> to; int link; int out; bool leaf = false; vi inds;};
