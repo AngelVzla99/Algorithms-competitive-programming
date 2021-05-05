@@ -1,3 +1,9 @@
+// * construccion O(n*ASZ)
+// * cada camino representa un substring
+// * para calcular cuantas veces sale cada substring, inicalmente marcamos cnt = 1 en todos los nodos (no clonados)
+// y finalmente hacemos d[ d[v].link ].cnt += d[v]. cnt, en orden desde los caminos mas largos
+// * para ver la cantidad de palabras diferentes seria un dp de cuantos caminos hay
+
 struct SUF_AUT {
     static const int ASZ = 26;
     struct node { int len, link; array<int, ASZ> to;};
