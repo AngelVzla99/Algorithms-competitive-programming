@@ -9,7 +9,7 @@ const long double TAU = 4.0 * acos(0);
 const long double EPS = 1e-8;
 struct cd{
 	ld x=0, y=0;
-	cd(ld x, ld y) : x(x), y(y) {}
+	cd(ld _x, ld _y) : x(_x), y(_y) {}
 	cd(ld z = 0) : x(z), y(0) {}
 	cd operator +(cd z) {return cd(x + z.x, y + z.y);}
 	cd operator -(cd z) {return cd(x - z.x, y - z.y);}
