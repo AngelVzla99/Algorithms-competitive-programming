@@ -15,7 +15,7 @@ void getsz(int v, int p) {
 
 
 int cnt[maxn];
-void dfs(int v, int p, bool keep){
+void dfs(int v, int p, bool keep){ // O(nlogn)
     int mx = -1, bigChild = -1;
     for(auto u : g[v])
        if(u != p && sz[u] > mx)
