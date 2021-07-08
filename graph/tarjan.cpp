@@ -1,3 +1,4 @@
+// inicializar t=0, low[i] = -1, disc[i] = -1 y vis[i] = false
 int t;
 int low[maxN], disc[maxN];
 bool vis[maxN];
