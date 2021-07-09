@@ -3,6 +3,8 @@ f[i] is the length of the longest proper prefix of the substring
 s[0…i] which is also a suffix of this substring.
 
 si f[10] = 3 => s[1..10] = abc...abc, Son iguales su sufijo y prefijo tamaño 3
+
+para comprimir un string se ve si k = n - pi[n-1] divide a n, si es asi el prefijo de tamano k es la respuesta
 */
 
 vector<int> prefix_function(string s){
