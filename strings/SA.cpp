@@ -3,6 +3,7 @@
 // * para calcular cuantas veces sale cada substring, inicalmente marcamos cnt = 1 en todos los nodos (no clonados)
 // y finalmente hacemos d[ d[v].link ].cnt += d[v]. cnt, en orden desde los caminos mas largos
 // * para ver la cantidad de palabras diferentes seria un dp de cuantos caminos hay
+// * si quieres la posicion en la que sale solo la guardas en el nodo a la hora de crearlo y clonarlo
 
 struct SUF_AUT {
     static const int ASZ = 26;
