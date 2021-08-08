@@ -1,3 +1,4 @@
+// PROBLEM D https://codeforces.com/group/gXivUSZQpn/contest/337359
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -10,17 +11,20 @@
 #include <map>
 #include <unordered_map>
 #include <assert.h>
+#include <iostream>     // std::cout, std::fixed
+#include <iomanip>      // std::setprecision
 
 using namespace std;
 
 typedef long long ll;
+typedef long double ld;
 typedef pair<int, int> pii;
+typedef pair<ll,ll> pll;
 typedef pair<int, pair<int, int>> piii;
 typedef vector<int> vi;
 typedef vector<pii> vii;
 
 int dadsadasda;
-
 #define ri(a) dadsadasda=scanf("%d", &a)
 #define rii(a,b) dadsadasda=scanf("%d %d", &a, &b)
 #define riii(a,b,c) dadsadasda=scanf("%d %d %d", &a, &b, &c)
@@ -37,93 +41,122 @@ int dadsadasda;
 #define SZ(s) (int)s.size()
 
 const int INF = 0x3f3f3f3f;
-const ll LLINF = 1e18;
-const int MAXN = 1e5; // CAMBIAR ESTE
+const ll INFLL = 1e18+1;
+const int MOD = 998244353;
+const int MAXN = 600+1;
 
-// GJNM
 typedef double T; // long double, Rational, double + mod<P>...
 typedef vector<T> vd;
 typedef vector<vd> vvd;
 
-const T eps = 1e-8, inf = 1 / .0;
-#define MP make_pair
-#define ltj(X) if(s == -1 || MP(X[j],N[j]) < MP(X[s],N[s])) s=j
+const T EPS = 1e-8, inf = 1 / .0;
 
-struct LPSolver {
-    int m, n;
-    vi N, B;
-    vvd D;
+vector<int> X,Y;
+vector<vector<T> > A;
+vector<T> b,c;
+T z;
+int n,m;
+void pivot(int x,int y){
+	swap(X[y],Y[x]);
+	b[x]/=A[x][y];
+	FOR(i,0,m)if(i!=y)A[x][i]/=A[x][y];
+	A[x][y]=1/A[x][y];
+	FOR(i,0,n)if(i!=x&&abs(A[i][y])>EPS){
+		b[i]-=A[i][y]*b[x];
+		FOR(j,0,m)if(j!=y)A[i][j]-=A[i][y]*A[x][j];
+		A[i][y]=-A[i][y]*A[x][y];
+	}
+	z+=c[y]*b[x];
+	FOR(i,0,m)if(i!=y)c[i]-=c[y]*A[x][i];
+	c[y]=-c[y]*A[x][y];
+}
+pair<T,vector<T> > simplex( // maximize c^T x s.t. Ax<=b, x>=0
+		vector<vector<T> > _A, vector<T> _b, vector<T> _c){
+	// returns pair (maximum value, solution vector)
+	A=_A;b=_b;c=_c;
+	n=b.size();m=c.size();z=0.;
+	X=vector<int>(m);Y=vector<int>(n);
+	FOR(i,0,m)X[i]=i;
+	FOR(i,0,n)Y[i]=i+m;
+	while(1){
+		int x=-1,y=-1;
+		double mn=-EPS;
+		FOR(i,0,n)if(b[i]<mn)mn=b[i],x=i;
+		if(x<0)break;
+		FOR(i,0,m)if(A[x][i]<-EPS){y=i;break;}
+		assert(y>=0); // no solution to Ax<=b
+		pivot(x,y);
+	}
+	while(1){
+		T mx=EPS;
+		int x=-1,y=-1;
+		FOR(i,0,m)if(c[i]>mx)mx=c[i],y=i;
+		if(y<0)break;
+		T mn=1e200;
+		FOR(i,0,n)if(A[i][y]>EPS&&b[i]/A[i][y]<mn)mn=b[i]/A[i][y],x=i;
+		assert(x>=0); // c^T x is unbounded
+		pivot(x,y);
+	}
+	vector<T> r(m);
+	FOR(i,0,n)if(Y[i]<m)r[Y[i]]=b[i];
+	return {z,r};
+}
 
-    LPSolver(const vvd& A, const vd& b, const vd& c) :
-        m(SZ(b)), n(SZ(c)), N(n + 1), B(m), D(m + 2, vd(n + 2)) {
-        FOR(i, 0, m) FOR(j, 0, n) D[i][j] = A[i][j];
-        FOR(i, 0, m) { B[i] = n + i; D[i][n] = -1; D[i][n + 1] = b[i];}
-        FOR(j, 0, n) { N[j] = j; D[m][j] = -c[j]; }
-        N[n] = -1; D[m + 1][n] = 1;
-    }
 
-    void pivot(int r, int s) {
-        T *a = D[r].data(), inv = 1 / a[s];
-        FOR(i, 0, m + 2) if (i != r && abs(D[i][s]) > eps) {
-            T *b = D[i].data(), inv2 = b[s] * inv;
-            FOR(j, 0, n + 2) b[j] -= a[j] * inv2;
-            b[s] = a[s] * inv2;
-        }
-        FOR(j, 0, n + 2) if (j != s) D[r][j] *= inv;
-        FOR(i, 0, m + 2) if (i != r) D[i][s] *= -inv;
-        D[r][s] = inv;
-        swap(B[r], N[s]);
-    }
+void printM(vector<vector<T>> &A){ // returns determinant
+	int n = SZ(A), m = SZ(A[0]);
+	FOR(i,0,n){
+		FOR(j,0,m) cout << A[i][j] << " ";
+		cout << endl;
+	}
+}
 
-    bool simplex(int phase) {
-        int x = m + phase - 1;
-        for (;;) {
-            int s = -1;
-            FOR(j, 0, n + 1) if (N[j] != -phase) ltj(D[x]);
-            if (D[x][s] >= -eps) return true;
-            int r = -1;
-            FOR(i, 0, m) {
-                if (D[i][s] <= eps) continue;
-                if (r == -1 || MP(D[i][n + 1] / D[i][s], B[i])
-                        < MP(D[r][n + 1] / D[r][s], B[r])) r = i;
-            }
-            if (r == -1) return false;
-            pivot(r, s);
-        }
-    }
 
-    T solve(vd &x) {
-        int r = 0;
-        FOR(i, 1, m) if (D[i][n + 1] < D[r][n + 1]) r = i;
-        if (D[r][n + 1] < -eps) {
-            pivot(r, n);
-            if (!simplex(2) || D[m + 1][n + 1] < -eps) return -inf;
-            FOR(i, 0, m) if (B[i] == -1) {
-                int s = 0;
-                FOR(j, 1, n + 1) ltj(D[i]);
-                pivot(i, s);
-            }
-        }
-        bool ok = simplex(1); x = vd(n);
-        FOR(i, 0, m) if (B[i] < n) x[B[i]] = D[i][n + 1];
-        return ok ? D[m][n + 1] : inf;
-    }
-};
-
-int main() {
-    int N, M; rii(N, M);
-    int rows = N, cols = M;
-    vvd A(rows, vd(cols));
-    vd B(rows), C(cols), x;
-
-    FOR(i, 0, N) dadsadasda = scanf("%lF", &B[i]);
-    FOR(i, 0, M) {
-        FOR(j, 0, N) dadsadasda = scanf("%lF", &A[j][i]);
-        FOR(j, 0, N) A[j][i] /= 100;
-        dadsadasda = scanf("%lF", &C[i]);
-    }
-    T ans = LPSolver(A, B, C).solve(x);
-    printf("%.2lF\n", ans);
-
+int main(){ 
+	ios_base::sync_with_stdio(false); cin.tie(0);
+	freopen("delight.in", "r", stdin); 
+	freopen("delight.out", "w", stdout);
+	
+	int n, k, ms, me; cin>>n>>k>>ms>>me;
+	int s[n], e[n];
+	FOR(i,0,n) cin>>s[i];
+	FOR(i,0,n) cin>>e[i];
+	
+	// ================ A y b =================
+	vd b, x, c;
+	vvd A;
+	// xi <= 1
+	FOR(i,0,n){
+		vd temp(n,0.0); temp[i] = 1.0;
+		A.pb(temp); b.pb(1.0);
+	}
+	
+	FOR(i,0,n-k+1){
+		vd temp(n,0.0);
+		FOR(j,i,i+k) temp[j]=1.0;
+		// sumInter <= k-me
+		A.pb(temp); b.pb(k-me);
+		// sumInter >= ms
+		FOR(j,i,i+k) temp[j] = -1.0;
+		A.pb(temp); b.pb(-ms);
+	}
+	
+	// ======== vectot de costos ===========
+	ll SUMA = 0;
+	FOR(i,0,n) c.pb(T(s[i]-e[i])), SUMA += e[i];
+	
+	// ========= solution ===========
+	auto ans = simplex(A,b,c);
+	cout << ll(ans.F)+SUMA << '\n';
+	FOR(i,0,n) cout <<( ans.S[i]>=0.555555555 ? 'S': 'E');
+	cout << '\n';
+	
     return 0;
 }
+
+/*
+10 4 1 2
+1 2 3 4 5 6 7 8 9 10
+10 9 8 7 6 5 4 3 2 1
+
+*/
