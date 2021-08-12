@@ -9,7 +9,7 @@ void reduceMod2(vector<vector<int> >& x){
 		FOR(k,0,n){
 			if(k==i)continue;
 			for(int l=m-1;l>=j;l--) 
-				x[k][l] = (x[k][l] - x[k][j]*x[i][l] + mod)%mod;
+				x[k][l] = (x[k][l] - x[k][j]*x[i][l] + mod) & 1; // cambiar esto si no es mod 2 xD
 		} 
 		i++;j++;
 	}
