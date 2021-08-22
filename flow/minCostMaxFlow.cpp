@@ -8,7 +8,7 @@ struct MCF{
 	priority_queue<pair<tc, int>, vector<pair<tc, int>>, greater<pair<tc, int>>> q;
 	struct edge{int to, rev; tf f, cap; tc cost;};
 	vector<vector<edge>> g;
-	MCF(int n):n(n),prio(n),curflow(n),prevedge(n),prevnode(n),pot(n),g(n){}
+	MCF(int _n): n(_n), prio(_n), pot(_n), curflow(_n), prevedge(_n), prevnode(_n), g(_n) {}
 	
 	void add_edge(int s, int t, tf cap, tc cost) {
 		g[s].pb((edge){t,SZ(g[t]),0,cap,cost});
