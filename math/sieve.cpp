@@ -5,13 +5,14 @@ O(logn) cada numero
 */
 
 // Minimo primo que divide a i
-int minDiv[MAXINT];
+int minDiv[MAXN];
 
 // sieve
-void initMinDiv(int mxINT){ // mxINT = max entero a factorizar
-	FOR(i,0,mxINT+1) minDiv[i] = i;
-	FOR(i,2,mxINT+1) if(minDiv[i]==i){
-		for(int j=2*i; j<mxINT+1; j+=i) minDiv[j] = min(minDiv[j],i);
+void initMinDiv(){ 
+	FOR(i,1,MAXN) minDiv[i] = i;
+	FOR(i,2,MAXN) if(minDiv[i]==i){
+		for(int j=2*i; j<MAXN; j+=i) 
+			minDiv[j] = min(minDiv[j],i);
 	}
 }
 
