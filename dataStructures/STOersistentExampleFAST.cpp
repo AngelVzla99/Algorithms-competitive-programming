@@ -61,7 +61,7 @@ struct robot{
 #define oper(a, b) (a+b)
 #define NEUT 0
 #define INF 1000000007
-struct STree { // persistent segment tree for min over integers
+struct STree { // persistent segment tree for sum over integers
 	vector<int> st, L, R; int n,sz,rt;
 	STree(int n): st(1,NEUT),L(1,-1),R(1,-1),n(n),rt(0),sz(1){}
 	STree(){}
