@@ -1,54 +1,109 @@
-// https://codeforces.com/contest/1616/submission/141444001
-typedef int Long;
-pair< Long, vector<Long> > Gauss_MOD_SLAE(vector< vector<Long> > &A, Long mod) {
-    Long n = A.size();
-    Long m = A[0].size() - 1;
-    vector<Long> where(m, -1);
-    for (Long col = 0, row = 0; col < m && row < n; col++) {
-        Long sel = row;
-        for (Long i = row; i < n; i++) {
-            if (A[i][col] != 0) {
+const int MOD = 3;
+ 
+struct Modint {
+    ll val;
+ 
+    Modint (ll _val = 0)
+        : val(_val % MOD) {}
+ 
+    Modint operator+ (Modint other) const {
+        return Modint(val + other.val);
+    }
+ 
+    void operator+= (Modint other) {
+        val += other.val;
+        val %= MOD;
+    }
+ 
+    Modint operator- () const {
+        return Modint(MOD - val);
+    }
+ 
+    Modint operator- (Modint other) const {
+        return Modint(val + MOD - other.val);
+    }
+ 
+    void operator-= (Modint other) {
+        val += MOD - other.val;
+        val %= MOD;
+    }
+ 
+    Modint operator* (Modint other) const {
+        return Modint(val * other.val);
+    }
+ 
+    void operator*= (Modint other) {
+        val *= other.val;
+        val %= MOD;
+    }
+ 
+    bool operator== (Modint other) const {
+        return val == other.val;
+    }
+ 
+    bool operator!= (Modint other) const {
+        return val != other.val;
+    }
+};
+ 
+Modint exp (Modint a, int k) {
+    if (k == 0) {
+        return Modint(1);
+    } else if (k % 2 == 0) {
+        Modint half = exp(a, k / 2);
+        return half * half;
+    } else {
+        return a * exp(a, k - 1);
+    }
+}
+ 
+Modint inv (Modint a) {
+    return exp(a, MOD - 2);
+}
+ 
+ostream& operator<< (ostream& out, Modint p) {
+    out << p.val;
+    return out;
+}
+ 
+// Source: https://cp-algorithms.com/linear_algebra/linear-system-gauss.html
+// si ans.empty(), no hay respuesta
+void gauss (vector<vector<Modint>> a, vector<Modint> &ans) {
+    int n = (int) a.size();
+    int m = (int) a[0].size() - 1;
+ 
+    vector<int> where (m, -1);
+    for (int col = 0, row = 0; col < m && row < n; ++col) {
+        int sel = row;
+        for (int i = row; i < n; ++i)
+            if (a[i][col].val > a[sel][col].val)
                 sel = i;
-                break;
-            }
-        }
-        if (A[sel][col] == 0) continue;
-        for (Long i = col; i <= m; i++) swap(A[sel][i], A[row][i]);
+        if (a[sel][col] == Modint(0))
+            continue;
+        for (int i = col; i <= m; ++i)
+            swap (a[sel][i], a[row][i]);
         where[col] = row;
-        for (Long i = row + 1; i < n; i++) {
-            Long c = (A[i][col] * A[row][col]) % mod;
-            if (c == 0) continue;
-            for (Long j = col; j <= m; j++) {
-                A[i][j] -= (A[row][j] * c) % mod;
-                A[i][j] %= mod;
-                if (A[i][j] < 0) A[i][j] += mod;;
+ 
+        for (int i = 0; i < n; ++i)
+            if (i != row) {
+                Modint c = a[i][col] * inv(a[row][col]);
+                for (int j = col; j <= m; ++j)
+                    a[i][j] -= a[row][j] * c;
             }
+        ++row;
+    }
+ 
+    ans.assign (m, 0);
+    for (int i = 0; i < m; ++i)
+        if (where[i] != -1)
+            ans[i] = a[where[i]][m] * inv(a[where[i]][i]);
+ 
+    for (int i = 0; i < n; ++i) {
+        Modint sum = 0;
+        for (int j = 0; j < m; ++j)
+            sum += ans[j] * a[i][j];
+        if (sum != a[i][m]) {
+            ans.clear();
         }
-        row++;
     }
-
-    vector<Long> X(m, 0);
-    for (Long j = m - 1; j >= 0; j--) {
-        if (where[j] != -1) {
-            Long b = A[where[j]][m];
-            for (Long k = m - 1; k > j; k--) {
-                b -= (X[k] * A[where[j]][k]) % mod;
-                b %= mod;
-                if (b < 0) b += mod;
-            }
-            X[j] = (b * A[where[j]][j]) % mod;
-        }
-    }
-    for (Long i = 0; i < n; i++) {
-        Long sum = 0;
-        for (Long j = 0; j < m; j++) {
-            sum += (X[j] * A[i][j]) % mod;
-            sum %= mod;
-        }
-        if (A[i][m] != sum) return make_pair(0, X);
-    }
-    for (Long i = 0; i < m; i++) {
-        if (where[i] == -1) return make_pair(INF, X);
-    }
-    return make_pair(1, X);
 }
